@@ -1,4 +1,4 @@
-##建表
+## 建表
 ```sql
 -- 学生表
 -- Student（s_id，s_name，s_birth，s_sex）
