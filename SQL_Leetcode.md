@@ -62,3 +62,38 @@ FROM Person p1, Person p2
 WHERE p1.Email = p2.Email AND
 p1.Id > p2.Id
 ```
+## ※197. Rising Temperature
+```sql
+select a.id
+from weather a, weather b
+where a.temperature > b.temperature
+and datediff(a.recorddate,b.recorddate) = 1
+```
+
+## 596. Classes More Than 5 Students
+```sql
+select class
+from courses
+group by class
+having count(distinct student) >= 5
+```
+
+## 620. Not Boring Movies
+```sql
+select id, movie, description, rating
+from cinema
+where id%2 =1
+and description != 'boring'
+order by rating desc
+```
+
+## 627. Swap Salary
+```sql
+update salary set sex = CHAR(ASCII('f') ^ ASCII('m') ^ ASCII(sex));
+---
+update salary
+set sex = CASE sex
+            WHEN 'm' THEN 'f'
+            ELSE 'm'
+            END;
+```
