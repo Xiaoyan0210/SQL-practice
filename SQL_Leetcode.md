@@ -87,9 +87,10 @@ and description != 'boring'
 order by rating desc
 ```
 
-## 627. Swap Salary
+## ※627. Swap Salary
 ```sql
 update salary set sex = CHAR(ASCII('f') ^ ASCII('m') ^ ASCII(sex));
+#using XOR
 ---
 update salary
 set sex = CASE sex
