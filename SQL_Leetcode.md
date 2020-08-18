@@ -32,4 +32,33 @@ sum(case when month = 'Dec' then revenue end) as Dec_Revenue
 from Department
 group by id
 ```
+## 595. Big Countries
+```sql
+select name, population, area
+from World
+where area >3000000 or population >25000000
+```
 
+## 182. Duplicate Emails
+```sql
+select Distinct a.Email
+from Person a, Person b
+where a.Email = b.Email
+and a.Id != b.Id
+```
+
+## 183. Customers Who Never Order
+```sql
+select name as Customers
+from customers
+where Id not in (select CustomerId from orders)
+```
+
+## ※196. Delete Duplicate Emails
+### https://leetcode.com/problems/delete-duplicate-emails/discuss/55553/Simple-Solution
+```sql
+DELETE p1
+FROM Person p1, Person p2
+WHERE p1.Email = p2.Email AND
+p1.Id > p2.Id
+```
