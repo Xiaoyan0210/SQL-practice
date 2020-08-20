@@ -247,7 +247,7 @@ group by c.c_id
 
 ## ※19、按各科成绩进行排序，并显示排名
 ### 使用rank variable
-###set @xx := num 定义
+### set @xx := num 定义
 ```sql
 set @rank:=0;
 select sc.s_id, sc.s_score, @rank:=@rank+1
