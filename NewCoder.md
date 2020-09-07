@@ -1,3 +1,5 @@
+## sqllite 3.7.9
+
 ## 1. 查找最晚入职员工的所有信息
 
 ```sql
@@ -37,4 +39,41 @@ from employees e left join dept_emp d
 on d.emp_no = e.emp_no
 ```
 
-## 6.
+## 6. 查找所有员工入职时候的薪水情况，给出emp_no以及salary， 并按照emp_no进行逆序
+```sql
+select e.emp_no, s.salary
+from employees e left join salaries s 
+on e.emp_no = s.emp_no
+where e.hire_date = s.from_date
+order by e.emp_no desc
+```
+
+## 7.查找薪水变动超过15次的员工号emp_no以及其对应的变动次数t
+```sql
+select emp_no, count(emp_no) as t
+from salaries
+group by emp_no
+having count(emp_no) > 15
+```
+
+## 8.找出所有员工当前(to_date='9999-01-01')具体的薪水salary情况，对于相同的薪水只显示一次,并按照逆序显示
+```sql
+select distinct salary
+from salaries
+where to_date = '9999-01-01'
+order by salary desc
+```
+
+## 9.获取所有部门当前(dept_manager.to_date='9999-01-01')manager的当前(salaries.to_date='9999-01-01')薪水情况，给出dept_no, emp_no以及salary(请注意，同一个人可能有多条薪水情况记录)
+```sql
+select d.dept_no, d.emp_no, s.salary
+from dept_manager d left join salaries s
+on d.emp_no = s.emp_no
+where d.to_date='9999-01-01'
+and s.to_date='9999-01-01'
+```
+
+## 10. 
+```sql
+
+```
