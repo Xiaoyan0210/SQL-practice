@@ -130,3 +130,29 @@ group by t.title
 ```
 
 ## 17. 获取当前（to_date='9999-01-01'）薪水第二多的员工的emp_no以及其对应的薪水salary
+```sql
+select emp_no, salary
+from salaries
+where to_date='9999-01-01'
+and salary in (select distinct salary from salaries order by salary desc limit 1,1)
+#防止出现多个薪水最多的人 eg:有3人拿相同最高工资，若不distinct，则limit 1,1会筛选出第2个拥有最高工资的人
+```
+
+## 18. 
+```sql
+
+```
+
+## 19. 查找所有员工的last_name和first_name以及对应的dept_name，也包括暂时没有分配部门的员工
+```sql
+select e.last_name, e.first_name, de.dept_name
+from employees e left join dept_emp d on e.emp_no = d.emp_no
+left join departments de on d.dept_no = de.dept_no
+```
+
+## 20. 查找员工编号emp_no为10001其自入职以来的薪水salary涨幅(总共涨了多少)growth(可能有多次涨薪，没有降薪)
+```sql
+select (max(salary) - min(salary)) as growth
+from salaries
+where emp_no = '10001'
+```
