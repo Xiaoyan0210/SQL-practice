@@ -138,9 +138,13 @@ and salary in (select distinct salary from salaries order by salary desc limit 1
 #防止出现多个薪水最多的人 eg:有3人拿相同最高工资，若不distinct，则limit 1,1会筛选出第2个拥有最高工资的人
 ```
 
-## 18. 
+## 18. 查找当前薪水(to_date='9999-01-01')排名第二多的员工编号emp_no、薪水salary、last_name以及first_name，你可以不使用order by完成吗
 ```sql
-
+select e.emp_no, max(s.salary) as salary, e.last_name, e.first_name
+from employees e left join salaries s 
+on e.emp_no = s.emp_no
+where salary not in (select max(salary) from salaries where to_date = '9999-01-01')
+and s.to_date = '9999-01-01'
 ```
 
 ## 19. 查找所有员工的last_name和first_name以及对应的dept_name，也包括暂时没有分配部门的员工
@@ -156,3 +160,5 @@ select (max(salary) - min(salary)) as growth
 from salaries
 where emp_no = '10001'
 ```
+
+## 21. 
