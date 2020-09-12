@@ -162,3 +162,17 @@ where emp_no = '10001'
 ```
 
 ## 21. 
+```sql
+
+
+```
+
+## 22. 统计各个部门的工资记录数，给出部门编码dept_no、部门名称dept_name以及部门在salaries表里面有多少条记录sum
+```sql
+select de.dept_no, dp.dept_name, count(s.salary) as sum 
+from dept_emp de inner join departments dp on de.dept_no = dp.dept_no
+inner join salaries s on de.emp_no = s.emp_no
+group by de.dept_no
+```
+
+## 23. 
