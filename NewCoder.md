@@ -199,3 +199,30 @@ where emp.dept_no = dep.dept_no
 and emp.salary > dep.salary
 
 ```
+
+## 26. 汇总各个部门当前员工的title类型的分配数目，即结果给出部门编号dept_no、dept_name、其部门下所有的当前(dept_emp.to_date = '9999-01-01')员工的当前(titles.to_date = '9999-01-01')title以及该类型title对应的数目count(注：因为员工可能有离职，所有dept_emp里面to_date不为'9999-01-01'就已经离职了，不计入统计，而且员工可能有晋升，所以如果titles.to_date 不为 '9999-01-01'，那么这个可能是员工之前的职位信息，也不计入统计)
+```sql
+select de.dept_no, de.dept_name, t.title, count(title) as title from dept_emp d left join departments de on d.dept_no = de.dept_no
+left join titles t on d.emp_no = t.emp_no
+where d.to_date = '9999-01-01'
+and t.to_date = '9999-01-01'
+group by de.dept_name, t.title
+order by de.dept_no, de.dept_name
+```
+
+## 27. 给出每个员工每年薪水涨幅超过5000的员工编号emp_no、薪水变更开始日期from_date以及薪水涨幅值salary_growth，并按照salary_growth逆序排列。提示：在sqlite中获取datetime时间对应的年份函数为strftime('%Y', to_date)(数据保证每个员工的每条薪水记录to_date-from_date=1年，而且同一员工的下一条薪水记录from_data=上一条薪水记录的to_data)
+```sql
+select b.emp_no, b.from_date, (b.salary - a.salary) as salary_growth
+from salaries as a, salaries as b 
+where a.emp_no = b.emp_no
+and salary_growth > 5000
+and ((strftime('%Y', b.to_date) - strftime('%Y', a.to_date) = 1) 
+OR (strftime('%Y', b.from_date) - strftime('%Y', a.from_date) = 1))
+order by salary_growth desc
+```
+
+## 28. 查找描述信息(film.description)中包含robot的电影对应的分类名称(category.name)以及电影数目(count(film.film_id))，而且还需要该分类包含电影总数量(count(film_category.category_id))>=5部 
+```sql
+
+
+```
