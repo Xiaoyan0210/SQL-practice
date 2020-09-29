@@ -223,6 +223,21 @@ order by salary_growth desc
 
 ## 28. 查找描述信息(film.description)中包含robot的电影对应的分类名称(category.name)以及电影数目(count(film.film_id))，而且还需要该分类包含电影总数量(count(film_category.category_id))>=5部 
 ```sql
-
-
+select c.name, count(f.film_id)
+from film f,
+(select category_id, count(film_id) as category_num from film_category  
+group by category_id having count(film_id)>=5) as new, category c, film_category fc
+where new.category_id = c.category_id
+and f.film_id = fc.film_id
+and c.category_id = fc.category_id
+and f.description like '%robot%'
 ```
+
+## 29. 使用join查询方式找出没有分类的电影id以及名称
+```sql
+select f.film_id, f.title
+from film f left join film_category fc on f.film_id = fc.film_id
+where fc.category_id is NULL
+```
+
+## 30. 
