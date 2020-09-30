@@ -240,4 +240,19 @@ from film f left join film_category fc on f.film_id = fc.film_id
 where fc.category_id is NULL
 ```
 
-## 30. 
+## 30. 你能使用子查询的方式找出属于Action分类的所有电影对应的title,description吗
+```sql
+select f.title, f.description
+from film f, category c, film_category fc
+where f.film_id = fc.film_id
+and c.category_id = fc.category_id
+and c.name = 'Action'
+```
+
+## 31. 将employees表的所有员工的last_name和first_name拼接起来作为Name，中间以一个空格区分(注：该数据库系统是sqllite,字符串拼接为 || 符号，不支持concat函数)
+```sql
+select last_name || " " || first_name as Name
+from employees
+```
+
+## 32. 
