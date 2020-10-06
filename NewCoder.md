@@ -249,12 +249,28 @@ and c.category_id = fc.category_id
 and c.name = 'Action'
 ```
 
-## 31. 将employees表的所有员工的last_name和first_name拼接起来作为Name，中间以一个空格区分(注：该数据库系统是sqllite,字符串拼接为 || 符号，不支持concat函数)
+## 32. 将employees表的所有员工的last_name和first_name拼接起来作为Name，中间以一个空格区分(注：该数据库系统是sqllite,字符串拼接为 || 符号，不支持concat函数)
 ```sql
 select last_name || " " || first_name as Name
 from employees
 ```
 
-## 32. 
+## 33. 创建一个actor表，包含如下列信息(注：sqlite获取系统默认时间是datetime('now','localtime'))
+```sql
+create table actor(
+    actor_id smallint(5)  not null ,
+    first_name varchar(45)  not null,
+    last_name varchar(45)  not null,
+    last_update timestamp  not null default (datetime('now','localtime')),
+    primary key(actor_id)
+)
+```
 
-## 33.
+## 34. 对于表actor批量插入如下数据(不能有2条insert语句哦!)
+```sql
+insert into actor
+values (1,'PENELOPE','GUINESS','2006-02-15 12:34:33'),
+(2,'NICK','WAHLBERG','2006-02-15 12:34:33')
+```
+
+## 35. 
