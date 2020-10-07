@@ -273,4 +273,10 @@ values (1,'PENELOPE','GUINESS','2006-02-15 12:34:33'),
 (2,'NICK','WAHLBERG','2006-02-15 12:34:33')
 ```
 
-## 35. 
+## 35. 对于表actor批量插入如下数据,如果数据已经存在，请忽略(不支持使用replace操作)
+```sql
+insert or ignore into actor
+values (3, 'ED','CHASE','2006-02-15 12:34:33')
+```
+
+## 36. 
