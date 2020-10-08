@@ -279,4 +279,19 @@ insert or ignore into actor
 values (3, 'ED','CHASE','2006-02-15 12:34:33')
 ```
 
-## 36. 
+## 36. 请你创建一个actor_name表，并且将actor表中的所有first_name以及last_name导入该表. actor_name表结构如下：
+ ## first_name	varchar(45)	not null	名字 ;     last_name	varchar(45)	not null	姓氏
+```sql
+create table actor_name 
+(
+first_name varchar(45) not null,
+last_name  varchar(45) not null
+);
+insert into actor_name select first_name, last_name from actor;
+```
+
+## ※37. 给指定表或者视图的某列添加索引使用语句：CREATE [UNIQUE/...] INDEX indexName ON tableName(colName);
+```sql
+CREATE UNIQUE INDEX uniq_idx_firstname on actor(first_name);
+CREATE INDEX idx_lastname on actor(last_name);
+```
